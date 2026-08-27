@@ -2,30 +2,29 @@
  * ============================================================
  *  VUA DIGITALS — SITE CONFIGURATION
  * ============================================================
- *  All business contact details live here.
- *  Replace the placeholder values with the real business info.
- * ============================================================
  */
 
 export const siteConfig = {
   companyName: 'VUA DIGITALS',
 
-  // IMPORTANT: Replace these placeholders with the real business details.
-  phone: 'YOUR_PHONE_NUMBER',
-  whatsapp: 'YOUR_WHATSAPP_NUMBER', // international format, digits only, e.g. 919999999999
-  email: 'YOUR_EMAIL',
-  address: 'YOUR_ADDRESS',
-  website: 'https://vuadigitals.example',
+  phone: '+91 9245492377',
+  whatsapp: '919245492377',
+  email: 'vuadigitalsmdu@gmail.com',
 
-  // Social links — leave as '#' until real URLs are provided.
-  instagram: 'YOUR_INSTAGRAM_URL',
-  facebook: 'YOUR_FACEBOOK_URL',
-  googleMaps: 'YOUR_GOOGLE_MAPS_URL',
+  address: 'SPE COMPLEX, Rajampadi, Theni Main Road, Madurai',
 
-  // Default WhatsApp prefill message.
-  whatsappMessage: 'Hi VUA DIGITALS, I would like to enquire about your services.',
+  website: 'https://vua-digitals.vercel.app/',
 
-  // Interior division
+  instagram: 'https://www.instagram.com/vua_digitals/',
+
+  // Facebook page not provided yet.
+  facebook: '#',
+
+  googleMaps: 'https://share.google/VOd5exomqQfBZX3ML',
+
+  whatsappMessage:
+    'Hi VUA DIGITALS, I would like to enquire about your services.',
+
   interiorDivision: {
     name: 'VUA INTERIOR AND DECORS',
     tagline: 'Explore Interior & Decoration Services',
@@ -33,18 +32,20 @@ export const siteConfig = {
   },
 } as const;
 
-/** Formats the raw whatsapp number into a wa.me link with a prefilled message. */
-export function whatsappLink(message: string = siteConfig.whatsappMessage): string {
+/** Creates a WhatsApp link with a prefilled message. */
+export function whatsappLink(
+  message: string = siteConfig.whatsappMessage
+): string {
   const num = siteConfig.whatsapp.replace(/\D/g, '');
   return `https://wa.me/${num}?text=${encodeURIComponent(message)}`;
 }
 
-/** tel: link for the phone number. */
+/** Creates a tel: link. */
 export function phoneLink(): string {
   return `tel:${siteConfig.phone.replace(/\s+/g, '')}`;
 }
 
-/** mailto: link for email. */
+/** Creates a mailto: link. */
 export function emailLink(): string {
   return `mailto:${siteConfig.email}`;
 }
