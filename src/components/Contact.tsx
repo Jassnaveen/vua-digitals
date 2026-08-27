@@ -37,14 +37,35 @@ export function Contact({ serviceOptions }: ContactProps) {
     return Object.keys(e).length === 0;
   };
 
-  const onSubmit = (ev: FormEvent) => {
-    ev.preventDefault();
-    if (!validate()) return;
-    // Frontend-ready: structure allows easy backend / email / WhatsApp integration.
-    // For now, surface a success state.
-    setSubmitted(true);
-  };
+const onSubmit = (ev: FormEvent) => {
+  ev.preventDefault();
 
+  if (!validate()) return;
+
+  const enquiryMessage = `
+Hi VUA DIGITALS,
+
+New Enquiry
+
+Name: ${form.name}
+Phone: ${form.phone}
+Service: ${form.service}
+
+Message:
+${form.message}
+
+Please contact me regarding this enquiry.
+  `.trim();
+
+  const whatsappNumber = '919245492377';
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    enquiryMessage
+  )}`;
+
+  window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+
+  setSubmitted(true);
+};
 const handleChange =
   (field: keyof typeof form) =>
   (ev: FormEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
