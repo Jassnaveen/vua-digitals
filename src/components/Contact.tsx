@@ -45,9 +45,22 @@ export function Contact({ serviceOptions }: ContactProps) {
     setSubmitted(true);
   };
 
-  const handleChange = (field: keyof typeof form) => (ev: FormEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setForm((prev) => ({ ...prev, [field]: ev.currentTarget.value }));
-    if (errors[field]) setErrors((prev) => ({ ...prev, [field]: '' }));
+const handleChange =
+  (field: keyof typeof form) =>
+  (ev: FormEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const value = ev.currentTarget.value;
+
+    setForm((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+
+    if (errors[field]) {
+      setErrors((prev) => ({
+        ...prev,
+        [field]: '',
+      }));
+    }
   };
 
   const inputClass = (field: string) =>
